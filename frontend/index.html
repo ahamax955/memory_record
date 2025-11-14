@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>内存监控面板</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js" defer></script>
+    <script src="app.js" defer></script>
+</head>
+<body>
+    <header class="header">
+        <div>
+            <h1>多设备内存监控</h1>
+            <p>实时查看 adb 设备内存使用情况，自动触发 heapdump</p>
+        </div>
+        <div class="summary" id="summary"></div>
+    </header>
+
+    <main>
+        <section class="devices" id="devices"></section>
+
+        <section class="panel">
+            <h2>Heapdump 文件</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>文件名</th>
+                        <th>大小</th>
+                        <th>更新时间</th>
+                    </tr>
+                </thead>
+                <tbody id="heapdump-table"></tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <span>通过访问服务器 IP 即可查看本页面，例如 http://<你的IP>:8000</span>
+    </footer>
+</body>
+</html>
+
