@@ -22,7 +22,7 @@ class MemoryMonitorService:
         devices: Optional[List[str]] = None,
         interval: int = 3,
         threshold_mb: float = 250.0,
-        history_points: int = 240,
+        history_points: int = 15,
         heapdump_script: str = "heapdump.py",
         heapdump_output: str = "./tmp/heapdump",
     ) -> None:
@@ -218,7 +218,7 @@ def build_service_from_env() -> MemoryMonitorService:
     devices = [item.strip() for item in devices_env.split(",") if item.strip()] or None
     interval = int(os.environ.get("MONITOR_INTERVAL", "3"))
     threshold = float(os.environ.get("MONITOR_THRESHOLD_MB", "250"))
-    history = int(os.environ.get("MONITOR_HISTORY_POINTS", "240"))
+    history = int(os.environ.get("MONITOR_HISTORY_POINTS", "15"))
     heapdump_script = os.environ.get("HEAPDUMP_SCRIPT", "heapdump.py")
     heapdump_output = os.environ.get("HEAPDUMP_OUTPUT", "./tmp/heapdump")
 

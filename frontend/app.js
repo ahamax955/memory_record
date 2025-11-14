@@ -97,10 +97,11 @@ function updateDeviceCard(device, threshold) {
     `;
 
     if (device.history.length > 0) {
-        chart.data.labels = device.history.map((item) =>
+        const history = device.history.slice(-15);
+        chart.data.labels = history.map((item) =>
             new Date(item.time).toLocaleTimeString()
         );
-        chart.data.datasets[0].data = device.history.map((item) => item.value);
+        chart.data.datasets[0].data = history.map((item) => item.value);
         chart.update("none");
     }
 }
@@ -110,7 +111,7 @@ function renderHeapdumps(files) {
     if (!files.length) {
         const row = document.createElement("tr");
         const cell = document.createElement("td");
-        cell.colSpan = 3;
+        cell.colSpan = 4;
         cell.textContent = "暂无数据";
         heapdumpTable.appendChild(row);
         row.appendChild(cell);
@@ -123,6 +124,7 @@ function renderHeapdumps(files) {
             <td>${file.name}</td>
             <td>${file.size_mb} MB</td>
             <td>${new Date(file.modified).toLocaleString()}</td>
+            <td><a class="btn" href="${file.url}" target="_blank" rel="noopener">下载</a></td>
         `;
         heapdumpTable.appendChild(row);
     });
